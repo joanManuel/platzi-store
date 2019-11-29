@@ -8,7 +8,7 @@ import { CartComponent } from './cart/cart.component';
 
 // import { HomeComponent } from './home/home.component';
 // import { ProductsComponent } from './products/products.component';
-import { ContactComponent } from './contact/contact.component';
+// import { ContactComponent } from './contact/components/contact.component';
 import { DemoComponent } from './demo/demo.component';
 
 // import { BannerComponent } from './home/components/banner/banner.component';
@@ -27,7 +27,7 @@ import { CoreModule } from "./core/core.module";
     // ProductComponent,
     CartComponent,
     // ProductsComponent,
-    ContactComponent,
+    // ContactComponent,
     DemoComponent,
     PageNotFoundComponent,
     // ProductDetailComponent,

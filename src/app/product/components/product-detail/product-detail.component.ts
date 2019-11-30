@@ -9,7 +9,6 @@ import {Product} from '../../../product.model';
   styleUrls: ["./product-detail.component.scss"]
 })
 export class ProductDetailComponent implements OnInit {
-
   product: Product;
 
   constructor(
@@ -20,8 +19,50 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       const id = params.id;
-      this.product = this.productsService.getProduct(id);
-    
+      this.fetchProduct(id);
+      // this.product = this.productsService.getProduct(id);
+    });
+  }
+  fetchProduct(id: string) {
+    this.productsService.getProduct(id).subscribe(product => {
+      // console.log(product);
+      this.product = product;
+    });
+  }
+
+  createProduct() {
+    const newProduct: Product = {
+      id: "222",
+      title: "nuevo desde angular",
+      image: "assets/images/banner-1.jpg",
+      price: 3000,
+      description: "nuevo producto"
+    };
+
+    this.productsService.createProduct(newProduct).subscribe(products => {
+      console.log(products);
+      // this.products = products;
+    });
+  }
+
+  updateProduct() {
+    const updateProduct: Partial<Product> = {
+      price: 55555,
+      description: "edicion titulo"
+    };
+
+    this.productsService
+      .updateProduct("2", updateProduct)
+      .subscribe(products => {
+        console.log(products);
+        // this.products = products;
+      });
+  }
+  deleteProduct(){
+    this.productsService.deleteProduct("2324")
+    .subscribe(rta => {
+      console.log(rta);
+      // this.products = products;
     });
   }
 }

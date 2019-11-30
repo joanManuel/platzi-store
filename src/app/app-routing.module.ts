@@ -5,7 +5,7 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 // import {ProductsComponent} from './product/components/products/products.component';
 // import {ContactComponent} from './contact/components/contact.component';
 import {DemoComponent} from './demo/demo.component';
-import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {PageNotFoundComponent} from './page-not-found/components/page-not-found.component';
 // import {ProductDetailComponent} from './product/components/product-detail/product-detail.component';
 import { LayoutComponent } from './layout/layout.component';
 
@@ -30,7 +30,8 @@ const routes: Routes = [
       {
         path: "products",
         // canActivate: [AdminGuard],
-        loadChildren: () => import("./product/product.module").then(m => m.ProductModule)
+        loadChildren: () =>
+          import("./product/product.module").then(m => m.ProductModule)
       },
       // {
       //   path: "products/:id",
@@ -38,9 +39,9 @@ const routes: Routes = [
       // },
       {
         path: "contact",
-        // canActivate: [AdminGuard],
+        canActivate: [AdminGuard],
         loadChildren: () =>
-        import("./contact/contact.module").then(m => m.ContactModule)
+          import("./contact/contact.module").then(m => m.ContactModule)
       }
     ]
   },
@@ -49,8 +50,18 @@ const routes: Routes = [
     component: DemoComponent
   },
   {
+    path: "admin",
+    loadChildren: () =>
+      import("./admin/admin.module").then(
+        m => m.AdminModule
+      )
+  },
+  {
     path: "**",
-    component: PageNotFoundComponent
+    loadChildren: () =>
+      import("./page-not-found/page-not-found.module").then(
+        m => m.ClassPageNotFoundModule
+      )
   }
 ];
 
